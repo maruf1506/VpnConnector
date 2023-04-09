@@ -14,10 +14,19 @@ public class VpnKey {
     private static String FREE_SERVER = "";
     private static String PAID_SERVER = "";
 
+    static {
+        System.loadLibrary("keys");
+    }
+
+    public static native String freeURL();
+    public static native String proURL();
+    public static native String apiURL();
+
     public static void isInitialize(String Api, Context context){
-        String free = "https://app.vpnkey.online/includes/api.php?freeServers&package_name=";
-        String pro = "https://app.vpnkey.online/includes/api.php?proServers&package_name=";
-        String api= "&api_key=";
+
+        String free = new String(Base64.decode(freeURL(),Base64.DEFAULT));
+        String pro = new String(Base64.decode(proURL(),Base64.DEFAULT));
+        String api = new String(Base64.decode(apiURL(),Base64.DEFAULT));
 
         new Thread(new Runnable() {
             @Override
