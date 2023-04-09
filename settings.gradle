@@ -1,0 +1,3 @@
+include ':VpnSdk'
+include ':app'
+rootProject.name = "VpnConnector"
